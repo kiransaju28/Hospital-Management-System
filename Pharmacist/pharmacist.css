@@ -1,0 +1,509 @@
+/* pharmacist.css */
+/* ===== CUSTOM COLOR PATTERN ===== */
+:root {
+    --primary-blue: #1e90ff;
+    --parrot-green: #32cd32;
+    --dark-green: #006400;
+    --light-bg: #f4fff4;
+    --card-bg: #ffffff;
+    --text-dark: #033d2c;
+    --text-light: --primary-blue;
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--parrot-green));
+    --gradient-secondary: linear-gradient(135deg, var(--parrot-green), var(--dark-green));
+    --shadow-soft: 0 8px 32px rgba(0, 100, 0, 0.08);
+    --shadow-medium: 0 12px 40px rgba(0, 100, 0, 0.12);
+    --shadow-strong: 0 16px 48px rgba(0, 100, 0, 0.15);
+    --edit-btn-color: #ffa500;
+    --delete-btn-color: #ff4444;
+}
+
+/* ===== BASE STYLES WITH MEDIUM ANIMATIONS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER STYLES - GRADIENT SECONDARY ===== */
+header {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hospital-logo {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.hospital-logo:hover {
+    animation: logoSpin 0.6s ease, logoPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(50, 205, 50, 0.6));
+}
+
+@keyframes logoSpin {
+    from { transform: rotate(0deg) scale(1.1); }
+    to { transform: rotate(360deg) scale(1.1); }
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1rem;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== BUTTON STYLES - MEDIUM ANIMATIONS ===== */
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.action-btn.primary {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.primary:hover {
+    background: var(--gradient-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+}
+
+.action-btn.secondary {
+    background: var(--parrot-green);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.secondary:hover {
+    background: var(--primary-blue);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.action-btn.tertiary {
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+}
+
+.action-btn.tertiary:hover {
+    background: var(--text-light);
+    color: var(--dark-green);
+    transform: translateY(-2px);
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== SECTION STYLES ===== */
+section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--parrot-green);
+    animation: slideIn 0.8s ease-out both;
+}
+
+.queue-section {
+    grid-column: 1 / -1;
+    animation-delay: 0.2s;
+}
+
+.stock-section {
+    animation-delay: 0.4s;
+}
+
+.billing-section {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+section h2 {
+    color: var(--dark-green);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--parrot-green);
+    font-size: 1.4rem;
+}
+
+section h3 {
+    color: var(--dark-green);
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+/* ===== FORM BOX STYLES ===== */
+.form-box {
+    background: rgba(50, 205, 50, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.form-box:hover {
+    border-color: var(--parrot-green);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+}
+
+.fetch-pending-text {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.fetch-btn {
+    margin-bottom: 1rem;
+}
+
+/* ===== FORM GROUP STYLES ===== */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: var(--parrot-green);
+    box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.1);
+}
+
+.form-group input:hover, 
+.form-group select:hover {
+    border-color: var(--primary-blue);
+}
+
+/* ===== SEARCH BOX STYLES ===== */
+.search-box {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+}
+
+.search-box input {
+    flex: 1;
+}
+
+/* ===== TABLE STYLES ===== */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.data-table th {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table tr:nth-child(even) {
+    background: rgba(50, 205, 50, 0.05);
+}
+
+.data-table tr:hover {
+    background: rgba(30, 144, 255, 0.1);
+    transform: scale(1.01);
+}
+
+/* ===== INVENTORY BOX STYLES ===== */
+.inventory-box {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-inventory {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-inventory input {
+    flex: 1;
+}
+
+/* ===== PATIENT INFO BOX STYLES ===== */
+.patient-info-box {
+    background: rgba(30, 144, 255, 0.1);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.patient-info-box h3 {
+    color: var(--primary-blue);
+}
+
+/* ===== BILL TOTALS STYLES ===== */
+.bill-totals {
+    background: rgba(50, 205, 50, 0.1);
+    border-left: 4px solid var(--parrot-green);
+}
+
+.grand-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-green);
+    margin: 1rem 0;
+}
+
+/* ===== SUGGESTIONS BOX ===== */
+#stockSuggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: var(--shadow-soft);
+    width: calc(100% - 2px);
+}
+
+#stockSuggestions div {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#stockSuggestions div:hover {
+    background: rgba(50, 205, 50, 0.1);
+}
+
+/* ===== BUTTON STATES ===== */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+button:disabled:hover {
+    transform: none !important;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .queue-section {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .header-right {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .search-box, .search-inventory {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* Reduce animations on mobile for performance */
+    .form-box:hover {
+        transform: translateY(-1px);
+    }
+    
+    .data-table tr:hover {
+        transform: scale(1.005);
+    }
+}
+
+/* ===== SPECIAL BUTTON COLORS ===== */
+.edit-btn {
+    background-color: var(--edit-btn-color);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #ff8c00;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background-color: var(--delete-btn-color);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-1px);
+}
+
+/* ===== LOADING AND STATUS INDICATORS ===== */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-pending {
+    background-color: #ffa500;
+    animation: pulse 1.5s infinite;
+}
+
+.status-ready {
+    background-color: var(--parrot-green);
+}
+
+.status-completed {
+    background-color: var(--primary-blue);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
