@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Hospital - Pharmacy Desk</title>
+    <link rel="stylesheet" href="../Assets/styles.css">
+    <link rel="stylesheet" href="pharmacist.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="../Assets/faith_hospital_logo.png" alt="Faith Hospital Logo" class="hospital-logo">
+            <h1>PHARMACY DESK</h1>
+        </div>
+        <div class="header-right">
+            <span id="pharmacistNameDisplay">Pharmacist Name</span> |
+            <span id="currentDateTime"></span>
+            <button id="logout-btn" class="action-btn tertiary">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="queue-section">
+            <h2>Prescriptions & Search</h2>
+            
+            <div id="prescriptionQueueList" class="form-box">
+                <p class="fetch-pending-text">Data received from Doctor Prescription System</p> 
+                <button id="fetchPendingBtn" class="action-btn secondary fetch-btn">FETCH PENDING</button>
+                
+                <div id="pendingPrescriptionsContainer">
+                    <p>No pending prescriptions.</p>
+                </div>
+            </div>
+
+            <div class="search-box form-box">
+                <input type="text" id="searchPatientId" placeholder="Search by Patient ID (PXXXXX)">
+                <button id="searchPrescriptionBtn" class="action-btn">Search</button>
+            </div>
+        </section>
+
+        <section class="stock-section">
+            <h2>Stock Management</h2>
+            <div class="form-box">
+                <h3>Add/Update Stock Item</h3>
+                <div class="form-group">
+                    <label for="stockMedName">Medicine Name:</label>
+                    <input type="text" id="stockMedName" placeholder="Start typing to search..." required>
+                    <div id="stockSuggestions"></div>
+                </div>
+                <div class="form-group">
+                    <label for="stockPrice">Price (per unit):</label>
+                    <input type="number" id="stockPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="stockQty">Quantity to Add/New Total:</label>
+                    <input type="number" id="stockQty" required>
+                </div>
+                <button id="addUpdateStockBtn" class="action-btn primary">ADD/UPDATE STOCK</button>
+            </div>
+
+            <h3 style="margin-top: 20px;">Current Inventory</h3>
+            <div class="inventory-box form-box">
+                <div class="search-inventory">
+                    <input type="text" id="searchMedicineName" placeholder="Search medicine by name">
+                    <button id="searchMedicineBtn" class="action-btn">Search</button>
+                </div>
+                <table class="data-table" id="inventoryTable">
+                    <thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td colspan="4">No stock items loaded.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="billing-section">
+            <h2>Billing & Invoice</h2>
+            <div id="patientSummary" class="form-box patient-info-box">
+                <h3>Summary for: Select Patient</h3>
+                <p>Token: <span id="billToken">N/A</span> | Name: <span id="billName">N/A</span></p>
+                <p>Prescribing Dr: <span id="billDoctor">N/A</span></p>
+            </div>
+
+            <div class="bill-details form-box">
+                <table class="data-table" id="billingTable">
+                    <thead><tr><th>Item Name</th><th>Dosage</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr></thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="bill-totals form-box">
+                <p>SUBTOTAL: Rs<span id="subtotalDisplay">0.00</span></p>
+                <p>GST (5%): Rs<span id="gstDisplay">0.00</span></p>
+                <p class="grand-total">GRAND TOTAL: Rs<span id="grandTotalDisplay">0.00</span></p>
+
+                <button id="processPaymentBtn" class="action-btn primary" disabled>PROCESS PAYMENT</button>
+                <button id="printInvoiceBtn" class="action-btn tertiary" disabled>PRINT INVOICE</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="pharmacist.js"></script>
+</body>
+</html>
