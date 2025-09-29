@@ -1,0 +1,920 @@
+/* ==========================
+   GLOBAL THEME (Faith Hospital) - ENHANCED
+   ========================== */
+:root {
+    --primary-blue: #1e90ff;
+    --parrot-green: #32cd32;
+    --dark-green: #006400;
+    --light-bg: #f4fff4;
+    --card-bg: #ffffff;
+    --text-dark: #033d2c;
+    --text-light: #fdfdfd;
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--parrot-green));
+    --gradient-secondary: linear-gradient(135deg, var(--parrot-green), var(--dark-green));
+    --shadow-soft: 0 8px 32px rgba(0, 100, 0, 0.08);
+    --shadow-medium: 0 12px 40px rgba(0, 100, 0, 0.12);
+    --shadow-strong: 0 16px 48px rgba(0, 100, 0, 0.15);
+    --edit-btn-color: #ffa500; 
+    --delete-btn-color: #ff4444; 
+}
+
+/* Reset with smooth scrolling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #eaf8ea 0%, #f8fdf8 50%, #ffffff 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ==========================
+/* ==========================
+   HEADER - FIXED LAYOUT WITH SQUARE LOGO
+   ========================== */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.main-header:hover::before {
+    left: 100%;
+}
+
+/* Logo container - left side */
+.logo-container {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    flex: 1;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
+/* SQUARE LOGO - Perfectly visible */
+.hospital-logo {
+    width: 350px;
+    height: 90px;
+    border-radius: 12px; /* Square with slight rounding */
+    border: 3px solid rgba(255,255,255,0.8);
+    box-shadow: 
+        0 0 0 2px rgba(255,255,255,0.3), /* Outer glow */
+        0 4px 25px rgba(0,0,0,0.4), /* Shadow */
+        inset 0 2px 10px rgba(255,255,255,0.2); /* Inner glow */
+    transition: all 0.4s ease;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    backdrop-filter: blur(10px);
+    object-fit: contain; /* Prevents image distortion */
+    padding: 3px; /* Breathing space */
+}
+
+.hospital-logo:hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 
+        0 0 0 3px rgba(255,255,255,0.5),
+        0 8px 35px rgba(0,0,0,0.5),
+        inset 0 4px 15px rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.9);
+    filter: brightness(1.2) contrast(1.1);
+}
+
+/* Center the title */
+.main-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Header actions - right corner */
+.header-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+/* Logout button styling */
+#logout-btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+#logout-btn:hover {
+    background: linear-gradient(135deg, #ff5252, #d32f2f);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4);
+}
+
+/* ==========================
+   RESPONSIVE DESIGN
+   ========================== */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    .main-header h1 {
+        position: relative;
+        left: auto;
+        transform: none;
+        order: 2;
+        font-size: 1.8rem;
+    }
+    
+    .logo-container {
+        justify-content: center;
+        order: 1;
+    }
+    
+    .header-actions {
+        justify-content: center;
+        order: 3;
+    }
+    
+    .hospital-logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+    }
+}
+
+/* Logo visibility enhancements */
+.hospital-logo {
+    animation: logo-pulse 4s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+    0%, 100% {
+        filter: brightness(1) contrast(1) saturate(1);
+        box-shadow: 
+            0 0 0 2px rgba(255,255,255,0.3),
+            0 4px 25px rgba(0,0,0,0.4);
+    }
+    50% {
+        filter: brightness(1.15) contrast(1.1) saturate(1.2);
+        box-shadow: 
+            0 0 0 3px rgba(255,255,255,0.4),
+            0 6px 30px rgba(0,0,0,0.5);
+    }
+    100% {
+        filter: brightness(1) contrast(1) saturate(1);
+        box-shadow: 
+            0 0 0 2px rgba(255,255,255,0.3),
+            0 4px 25px rgba(0,0,0,0.4);
+    }
+}
+
+/* Ensure logo image is perfectly fitted */
+.hospital-logo {
+    object-fit: fill; 
+    background: white; /* Fallback background if image has transparency */
+}
+
+/* ==========================
+   RESPONSIVE DESIGN
+   ========================== */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    .main-header h1 {
+        position: relative;
+        left: auto;
+        transform: none;
+        order: 2;
+        font-size: 1.8rem;
+    }
+    
+    .logo-container {
+        justify-content: center;
+        order: 1;
+    }
+    
+    .header-actions {
+        justify-content: center;
+        order: 3;
+    }
+    
+    .hospital-logo {
+        width: 200px;
+        height: 65px;
+    }
+}
+
+/* Add glow effect to logo for extra visibility */
+.hospital-logo {
+    animation: gentle-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gentle-glow {
+    from {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    to {
+        box-shadow: 0 4px 25px rgba(255,255,255,0.2), 0 4px 20px rgba(0,0,0,0.4);
+    }
+}
+
+/* ==========================
+   NAVIGATION - ENHANCED
+   ========================== */
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: var(--text-light);
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+nav a:hover::before {
+    left: 100%;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ==========================
+   ACTION BUTTONS - ENHANCED WITH NEW COLORS
+   ========================== */
+.action-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transition: all 0.4s ease;
+    transform: translate(-50%, -50%);
+}
+
+.action-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.action-btn.primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+}
+
+.action-btn.secondary {
+    background: var(--gradient-secondary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(50, 205, 50, 0.3);
+}
+
+.action-btn.tertiary {
+    background: linear-gradient(135deg, var(--dark-green), #004d00);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 100, 0, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* ==========================
+   CARD STYLING - ENHANCED
+   ========================== */
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    margin: 25px 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(0, 100, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+    transition: left 0.4s ease;
+}
+
+.card:hover::before {
+    left: 0;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+}
+
+/* ==========================
+   TABS - ENHANCED
+   ========================== */
+.tab-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: rgba(0, 100, 0, 0.03);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: rgba(0, 100, 0, 0.05);
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    transition: left 0.3s ease;
+    z-index: 1;
+}
+
+.tab-button.active::before {
+    left: 0;
+}
+
+.tab-button.active {
+    border-color: var(--primary-blue);
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+.tab-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ==========================
+   TABLE STYLING - ENHANCED
+   ========================== */
+.roster-table,
+.billing-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+    margin-top: 15px; /* Added margin for search bar */
+}
+
+.roster-table:hover,
+.billing-table:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+.roster-table th,
+.billing-table th {
+    background: var(--gradient-secondary);
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.roster-table th::after,
+.billing-table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+}
+
+.roster-table td,
+.billing-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 100, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.roster-table tbody tr:nth-child(even),
+.billing-table tbody tr:nth-child(even) {
+    background: rgba(244, 255, 244, 0.5);
+}
+
+.roster-table tbody tr:hover,
+.billing-table tbody tr:hover {
+    background: var(--gradient-primary);
+    color: white;
+    transform: scale(1.01);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.highlighted-row {
+    background: var(--gradient-secondary) !important;
+    color: white;
+    animation: pulse-glow 2s infinite;
+    position: relative;
+}
+
+@keyframes pulse-glow {
+    0% { 
+        box-shadow: 0 0 10px var(--parrot-green);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 20px var(--primary-blue), 0 0 30px var(--parrot-green);
+        transform: scale(1.005);
+    }
+    100% { 
+        box-shadow: 0 0 10px var(--dark-green);
+        transform: scale(1);
+    }
+}
+
+/* ==========================
+   User Management Layout - ENHANCED
+   ========================== */
+.user-management-layout-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 30px;
+    align-items: start;
+    margin-top: 30px;
+}
+
+@media (max-width: 992px) {
+    .user-management-layout-wrapper {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+/* ==========================
+   CENTERED HEADINGS FOR SECTIONS
+   ========================== */
+.add-edit-user-section h2,
+.hospital-roster-section h2,
+.billing-report-container h2 {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.add-edit-user-section h2::after,
+.hospital-roster-section h2::after,
+.billing-report-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+.add-edit-user-section h2 {
+    color: var(--dark-green);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.hospital-roster-section h2 {
+    color: var(--dark-green);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.billing-report-container h2 {
+    color: var(--dark-green);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================
+   Search Bar Styling (NEW)
+   ========================== */
+.search-bar-container {
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 12px;
+    background: #f0f8f0;
+    box-shadow: inset 0 1px 3px rgba(0, 100, 0, 0.1);
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    color: var(--text-dark);
+}
+
+.search-input::placeholder {
+    color: #a0a0a0;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+}
+
+/* ==========================
+   Add/Edit User Section - ENHANCED
+   ========================== */
+.add-edit-user-section {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 100, 0, 0.08);
+    position: relative;
+}
+
+.add-edit-user-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 24px 24px 0 0;
+}
+
+.add-edit-user-section:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+}
+
+#addEditUserForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#addEditUserForm label {
+    font-weight: 600;
+    color: var(--dark-green);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#addEditUserForm input,
+#addEditUserForm select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f9fff9;
+}
+
+#addEditUserForm input:focus,
+#addEditUserForm select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+#availabilityStatus {
+    background: var(--gradient-secondary);
+    color: green;
+    font-weight: 600;
+    border: none !important;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#add-to-roster-btn {
+    flex: 2;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 14px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#add-to-roster-btn::before {
+    content: '➕';
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+#clear-form-btn {
+    flex: 1;
+    background: rgba(0, 100, 0, 0.1);
+    color: var(--dark-green);
+    border: 2px solid var(--dark-green);
+    font-weight: 600;
+    padding: 14px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+} 
+
+#clear-form-btn:hover {
+    background: var(--dark-green);
+    color: white;
+    transform: translateY(-2px);
+}
+
+#roleSpecificFields {
+    padding: 15px;
+    border: 2px dashed var(--parrot-green);
+    border-radius: 12px;
+    background: rgba(50, 205, 50, 0.05);
+    transition: all 0.3s ease;
+}
+
+#roleSpecificFields:hover {
+    border-color: var(--primary-blue);
+    background: rgba(30, 144, 255, 0.05);
+}
+
+/* ==========================
+   ENHANCED BUTTONS WITH NEW COLORS
+   ========================== */
+#add-to-roster-btn {
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+}
+
+#add-to-roster-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(30, 144, 255, 0.4);
+}
+
+/* NEW EDIT BUTTON STYLE */
+.edit-btn {
+    background: linear-gradient(135deg, var(--edit-btn-color), #ff8c00);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+    margin-right: 8px;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #ff8c00, #ff7700);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+/* ENHANCED DELETE BUTTON */
+.delete-btn {
+    background: linear-gradient(135deg, var(--delete-btn-color), #cc0000);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #ff2222, #aa0000);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 34, 34, 0.4);
+}
+
+/* ==========================
+   FOOTER - ENHANCED
+   ========================== */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 50px;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+/* ==========================
+   ADDITIONAL ENHANCEMENTS
+   ========================== */
+
+/* Loading animation */
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.loading-shimmer {
+    animation: shimmer 1.5s infinite linear;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%;
+}
+
+/* Floating action button */
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+}
+
+/* ==========================
+   RESPONSIVE DESIGN FOR HEADER
+   ========================== */
+@media (max-width: 768px) {
+    .main-header {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .logo-container {
+        justify-self: center;
+    }
+    
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header-actions {
+        justify-self: center;
+    }
+    
+    .hospital-logo {
+        width: 60px;
+        height: 60px;
+    }
+}
