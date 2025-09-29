@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Hospital Staff Login</title>
+    <link rel="stylesheet" href="access.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-banner">
+            <img src="../Assets/faith_hospital_logo.png" alt="Faith Hospital Logo" class="hospital-logo">
+            <h1>Faith Hospital Staff Portal</h1>
+            <p>Select your role to proceed to login</p>
+        </div>
+
+        <div class="staff-selection">
+            <div class="main-content-container">
+                <div class="admin-container">
+                    <div class="staff-card admin">
+                        <div class="staff-icon">
+                            <span>👑</span>
+                        </div>
+                        <div class="staff-info">
+                            <h3>Admin</h3>
+                            <p>Access administrative controls and manage hospital operations.</p>
+                            <button id="admin-btn" class="select-btn">Select Admin</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-container">
+                    <div class="section-title">Staff Roles</div>
+                    <div class="staff-grid">
+                        <div class="staff-card doctor">
+                            <div class="staff-icon">
+                                <span>🩺</span>
+                            </div>
+                            <div class="staff-info">
+                                <h3>Doctors</h3>
+                                <p>Manage patient consultations and medical records.</p>
+                                <button id="doctor-btn" class="select-btn">Select Doctor</button>
+                            </div>
+                        </div>
+                        <div class="staff-card pharmacist">
+                            <div class="staff-icon">
+                                <span>💊</span>
+                            </div>
+                            <div class="staff-info">
+                                <h3>Pharmacist</h3>
+                                <p>Handle prescriptions and medication dispensing.</p>
+                                <button id="pharmacist-btn" class="select-btn">Select Pharmacist</button>
+                            </div>
+                        </div>
+                        <div class="staff-card lab">
+                            <div class="staff-icon">
+                                <span>🧪</span>
+                            </div>
+                            <div class="staff-info">
+                                <h3>Lab</h3>
+                                <p>Process and analyze lab test results.</p>
+                                <button id="lab-btn" class="select-btn">Select Lab</button>
+                            </div>
+                        </div>
+                        <div class="staff-card receptionist">
+                            <div class="staff-icon">
+                                <span>📋</span>
+                            </div>
+                            <div class="staff-info">
+                                <h3>Receptionist</h3>
+                                <p>Manage patient appointments and registrations.</p>
+                                <button id="receptionist-btn" class="select-btn">Select Receptionist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Faith Hospital. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="access.js"></script>
+</body>
+</html>
