@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Hospital Lab Desk</title>
+    <link rel="stylesheet" href="../Assets/styles.css"> 
+    <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="../Assets/faith_hospital_logo.png" alt="Faith Hospital Logo" class="hospital-logo">
+            <h1>Faith Hospital Lab Desk</h1>
+        </div>
+        <div id="user-info" class="user-info">
+            <span class="datetime"></span>
+            <button id="logout-btn" class="action-btn tertiary">Logout</button>
+        </div>
+    </header>
+
+    <div class="main-content-container">
+        
+        <div class="card patient-queue-card">
+            <div class="card-header">
+                <h2>Patient Queue (Lab Requests)</h2>
+            </div>
+            <div class="search-section">
+                <button id="fetch-pending-btn" class="action-btn">FETCH PENDING</button>
+                <input type="text" id="search-patient-id" placeholder="Search by Patient ID...">
+                <button id="search-btn" class="action-btn">Search</button>
+            </div>
+            <div id="lab-queue-list" class="queue-list">
+                <p>Click "FETCH PENDING" to get new requests.</p>
+            </div>
+        </div>
+
+        <div class="card sample-processing-card">
+            <div class="card-header">
+                <h2>Sample Processing & Reporting</h2>
+            </div>
+            
+            <div class="processing-details">
+                <p><strong>Patient ID:</strong> <span id="patient-id-display">N/A</span></p>
+                <p><strong>Name:</strong> <span id="patient-name-display">N/A</span> / <strong>Doctor:</strong> <span id="doctor-name-display">N/A</span></p>
+                <p><strong>Age Group:</strong> <span id="patient-age-group">N/A</span></p>
+            </div>
+
+            <div class="form-group">
+                <label for="sample-collection-date">Sample Collection Date:</label>
+                <input type="date" id="sample-collection-date" required>
+            </div>
+            <div class="form-group">
+                <label for="sample-collection-time">Sample Collection Time:</label>
+                <input type="time" id="sample-collection-time" required>
+            </div>
+
+            <h3>Requested Tests & Results</h3>
+            <table class="tests-table">
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Cost (Rs)</th>
+                        <th>Normal Range</th>
+                    </tr>
+                </thead>
+                <tbody id="requested-tests-body">
+                </tbody>
+            </table>
+            
+            <div class="total-fee-display">
+                <strong>Total Lab Fee: Rs<span id="total-lab-fee">0.00</span></strong>
+            </div>
+
+            <h3>Test Results / Notes</h3>
+            <textarea id="test-results-notes" placeholder="Enter detailed test results and observations..." rows="8"></textarea>
+
+            <div class="action-buttons-group">
+                <button id="update-results-btn" class="action-btn secondary" disabled>UPDATE RESULTS</button>
+                <button id="process-billing-btn" class="action-btn primary" disabled>PROCESS BILLING & COMPLETE</button>
+                <button id="delete-request-btn" class="action-btn danger" disabled>DELETE REQUEST</button>
+                <button id="clear-next-btn" class="action-btn tertiary">CLEAR / NEXT PATIENT</button>
+            </div>
+        </div>
+
+        <div class="card billing-invoice-card">
+            <div class="card-header">
+                <h2>Billing & Invoice</h2>
+            </div>
+            <div id="invoice-summary">
+                <p>Select a patient to generate the invoice summary.</p>
+                <div class="invoice-box" style="display:none;">
+                    <h3>Invoice Summary</h3>
+                    <p><strong>Patient:</strong> <span id="invoice-p-name"></span></p>
+                    <p><strong>Total Tests:</strong> <span id="invoice-test-count"></span></p>
+                    <p><strong>Collection Date:</strong> <span id="invoice-collection-date"></span></p>
+                    <hr>
+                    <p>Subtotal: Rs<span id="invoice-subtotal">0.00</span></p>
+                    <p>Tax (5%): Rs<span id="invoice-tax">0.00</span></p>
+                    <hr>
+                    <h4 class="grand-total">GRAND TOTAL: Rs<span id="invoice-grand-total">0.00</span></h4>
+                    <button id="printInvoiceBtn" class="action-btn tertiary">PRINT INVOICE</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="lab.js"></script>
+</body>
+</html>
