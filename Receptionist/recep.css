@@ -1,0 +1,681 @@
+/* ===== CUSTOM COLOR PATTERN ===== */
+:root {
+    --primary-blue: #1e90ff;
+    --parrot-green: #32cd32;
+    --dark-green: #006400;
+    --light-bg: #f4fff4;
+    --card-bg: #ffffff;
+    --text-dark: #033d2c;
+    --text-light: #fdfdfd;
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--parrot-green));
+    --gradient-secondary: linear-gradient(135deg, var(--parrot-green), var(--dark-green));
+    --shadow-soft: 0 8px 32px rgba(0, 100, 0, 0.08);
+    --shadow-medium: 0 12px 40px rgba(0, 100, 0, 0.12);
+    --shadow-strong: 0 16px 48px rgba(0, 100, 0, 0.15);
+    --edit-btn-color: #ffa500;
+    --delete-btn-color: #ff4444;
+}
+
+/* ===== BASE STYLES WITH MEDIUM ANIMATIONS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER STYLES - GRADIENT SECONDARY ===== */
+.main-header {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hospital-logo {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.hospital-logo:hover {
+    animation: logoSpin 0.6s ease, logoPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(50, 205, 50, 0.6));
+}
+
+@keyframes logoSpin {
+    from { transform: rotate(0deg) scale(1.1); }
+    to { transform: rotate(360deg) scale(1.1); }
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: typewriter 1.2s ease-out;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1rem;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.user-info-separator {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.user-name {
+    color: var(--text-light);
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== BUTTON STYLES - MEDIUM ANIMATIONS ===== */
+.action-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.action-btn:hover::before {
+    left: 100%;
+}
+
+.action-btn.primary {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.primary:hover {
+    background: var(--gradient-secondary);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-strong);
+}
+
+.action-btn.tertiary {
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.tertiary:hover {
+    background: var(--text-light);
+    color: var(--dark-green);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    padding: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    grid-template-areas: 
+        "checkin search"
+        "invoice invoice";
+}
+
+.patient-checkin-section {
+    grid-area: checkin;
+    animation: slideInLeft 0.8s ease-out 0.5s both;
+}
+
+.patient-search-section {
+    grid-area: search;
+    animation: slideInRight 0.8s ease-out 0.7s both;
+}
+
+.invoice-status-section {
+    grid-area: invoice;
+    animation: slideInUp 0.8s ease-out 0.9s both;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CARD STYLES - MEDIUM ANIMATIONS ===== */
+.card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    border-top: 4px solid var(--parrot-green);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(50, 205, 50, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+    border-top: 4px solid var(--primary-blue);
+}
+
+.card h2 {
+    color: var(--dark-green);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 3px solid var(--parrot-green);
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-blue);
+    transition: width 0.4s ease;
+}
+
+.card:hover h2::after {
+    width: 100%;
+}
+
+.card h3 {
+    color: var(--dark-green);
+    margin: 1.2rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ===== FORM STYLES - MEDIUM ANIMATIONS ===== */
+.form-box {
+    background: rgba(50, 205, 50, 0.05);
+    padding: 1.8rem;
+    border-radius: 12px;
+    margin-bottom: 1.8rem;
+    border: 2px solid transparent;
+    animation: formGlow 3s ease-in-out infinite;
+}
+
+@keyframes formGlow {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: rgba(50, 205, 50, 0.3); }
+}
+
+.form-box:hover {
+    background: rgba(50, 205, 50, 0.08);
+    transform: scale(1.02);
+    animation: none;
+    border: 2px solid var(--parrot-green);
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    animation: formSlide 0.6s ease-out both;
+}
+
+@keyframes formSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.form-group:hover label {
+    color: var(--parrot-green);
+    transform: translateX(5px);
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+    background: var(--card-bg);
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: var(--parrot-green);
+    box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.2);
+    transform: scale(1.02);
+}
+
+.form-group input:hover, 
+.form-group select:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.fee-display {
+    color: var(--parrot-green);
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 8px 16px;
+    background: rgba(50, 205, 50, 0.1);
+    border-radius: 6px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ===== SEARCH SECTION - MEDIUM ANIMATIONS ===== */
+.search-box {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1.8rem;
+    animation: searchSlide 0.8s ease-out 0.6s both;
+}
+
+@keyframes searchSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.search-box label {
+    color: var(--text-dark);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.search-results-output {
+    background: rgba(50, 205, 50, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    min-height: 120px;
+    border: 2px dashed var(--parrot-green);
+    transition: all 0.4s ease;
+}
+
+.search-results-output:hover {
+    background: rgba(50, 205, 50, 0.1);
+    border: 2px solid var(--parrot-green);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-soft);
+}
+
+/* ===== TABLE STYLES - MEDIUM ANIMATIONS ===== */
+.status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.2rem;
+    animation: tableSlide 0.8s ease-out 1s both;
+}
+
+@keyframes tableSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.status-table th {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.status-table th:hover::after {
+    transform: scaleX(1);
+}
+
+.status-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.status-table tr:nth-child(even) {
+    background: rgba(50, 205, 50, 0.03);
+}
+
+.status-table tr {
+    transition: all 0.4s ease;
+}
+
+.status-table tr:hover {
+    background: rgba(30, 144, 255, 0.1);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-soft);
+}
+
+.status-table tr:hover td {
+    color: var(--dark-green);
+    font-weight: 600;
+}
+
+/* ===== INVOICE SECTION - MEDIUM ANIMATIONS ===== */
+.invoice-placeholder {
+    text-align: center;
+    color: var(--text-dark);
+    font-style: italic;
+    padding: 2.5rem;
+    background: rgba(50, 205, 50, 0.05);
+    border-radius: 10px;
+    border: 2px dashed var(--parrot-green);
+    transition: all 0.4s ease;
+    animation: placeholderPulse 3s ease-in-out infinite;
+}
+
+@keyframes placeholderPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+.invoice-placeholder:hover {
+    background: rgba(50, 205, 50, 0.1);
+    border: 2px solid var(--parrot-green);
+    transform: scale(1.02);
+    animation: none;
+}
+
+/* ===== MODAL STYLES - MEDIUM ANIMATIONS ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: var(--shadow-strong);
+    border: 3px solid var(--parrot-green);
+    animation: modalSlideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-content:hover {
+    transform: scale(1.02);
+    border-color: var(--primary-blue);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.8rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "checkin"
+            "search"
+            "invoice";
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .main-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .header-right {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Reduce animations on mobile for performance */
+    .card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== SPECIAL BUTTON COLORS ===== */
+.edit-btn {
+    background-color: var(--edit-btn-color);
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #ff8c00;
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    background-color: var(--delete-btn-color);
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
