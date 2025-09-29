@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Hospital - Receptionist Desk</title>
+    <link rel="stylesheet" href="recep.css">
+    <link rel="stylesheet" href="../Assets/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <img src="../Assets/faith_hospital_logo.png" alt="Faith Hospital Logo" class="hospital-logo">
+            <h1>Receptionist Desk</h1>
+        </div>
+        <div class="header-right">
+            <span id="currentDateTime"></span>
+            <span class="user-info-separator">|</span> 
+            <span id="userNameDisplay" class="user-name"></span>
+            <button id="logout-btn" class="action-btn tertiary">Logout</button>
+        </div>
+    </header>
+
+    <div class="container" id="mainContent">
+        <div class="grid-container">
+            <section class="patient-checkin-section card">
+                <h2>Patient Check-in / Registration</h2>
+                <form id="checkInForm">
+                    <div class="form-box">
+                        <h3>Patient Information</h3>
+                        <div class="form-group">
+                            <label for="pName">Patient Name:</label>
+                            <input type="text" id="pName" placeholder="Enter patient name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pAge">Age:</label>
+                            <input type="number" id="pAge" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pAddress">Address:</label>
+                            <input type="text" id="pAddress" placeholder="Enter patient address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pBloodGroup">Blood Group:</label>
+                            <select id="pBloodGroup" required>
+                                <option value="" disabled selected>Select Blood Group</option>
+                                <option value="A+">A+</option><option value="A-">A-</option>
+                                <option value="B+">B+</option><option value="B-">B-</option>
+                                <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                                <option value="O+">O+</option><option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pContact">Contact No: (10 digits)</label>
+                            <input type="text" id="pContact" placeholder="e.g., 9876543210" pattern="\d{10}" title="Please enter a 10-digit mobile number." required>
+                        </div>
+                    </div>
+
+                    <div class="form-box">
+                        <h3>Consultation Details</h3>
+                        <div class="form-group">
+                            <label for="pDoctor">Consulting Doctor:</label>
+                            <select id="pDoctor" required>
+                                <option value="" disabled selected>Select Doctor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Consultation Fee:</label>
+                            <span id="consultationFeeDisplay" class="fee-display">Rs0.00</span>
+                        </div>
+                        <button type="submit" class="action-btn primary">CHECK IN & GENERATE INVOICE</button>
+                    </div>
+                </form>
+            </section>
+            
+            <section class="patient-search-section card">
+                <h2>Search Patient History</h2>
+                <div class="search-box">
+                    <label for="patientIdSearch">Enter Patient ID:</label>
+                    <input type="text" id="patientIdSearch" placeholder="e.g., P123456" required>
+                    <button id="search-btn" class="action-btn primary">Search</button>
+                </div>
+                <div class="search-results-output" id="searchResultsOutput">
+                    <p>Search for a patient by ID to view their details.</p>
+                </div>
+            </section>
+
+            <section class="invoice-status-section card">
+                <h2>Patient Invoice & Doctor Status</h2>
+                
+                <div id="invoiceOutput">
+                    <div class="invoice-placeholder">Check in a patient to generate an invoice.</div>
+                </div>
+
+                <h3>Doctor Queue Status</h3>
+                <table class="status-table">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Status</th>
+                            <th>Queue Size</th>
+                        </tr>
+                    </thead>
+                    <tbody id="doctorStatusBody">
+                        <tr><td colspan="3">Loading doctor status...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <div id="editContactModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Edit Patient Mobile Number</h3>
+            <div class="form-group">
+                <label for="editContactInput">New Mobile Number:</label>
+                <input type="text" id="editContactInput" pattern="\d{10}" title="Please enter a 10-digit mobile number." required>
+            </div>
+            <div class="modal-actions">
+                <button id="saveEditBtn" class="action-btn primary">Save Changes</button>
+                <button id="cancelEditBtn" class="action-btn tertiary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="recep.js"></script>
+</body>
+</html>
