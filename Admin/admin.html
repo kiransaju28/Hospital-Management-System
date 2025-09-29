@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../Assets/styles.css">
+    <link rel="stylesheet" href="../Admin/admin.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="../Assets/faith_hospital_logo.png" alt="Faith Hospital Logo" class="hospital-logo" height="50px" width="50px">
+            <h1>WELCOME ADMIN !</h1>
+        </div>
+        <div class="header-actions">
+            <button id="logout-btn" class="action-btn tertiary">Logout</button>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="tab-bar">
+            <button class="tab-button active" data-tab="user-management">User Management</button>
+            <button class="tab-button" data-tab="patient-billing-report">Patient Billing Report</button>
+        </div>
+
+        <div class="dashboard-content" id="user-management-content" style="display: block;">
+            <div class="user-management-layout-wrapper">
+                <div class="add-edit-user-section card">
+                    <h2>Add/Edit staffs</h2>
+                    <form id="addEditUserForm">
+                        <div class="form-group">
+                            <label for="userRole">staff Role:</label>
+                            <select id="userRole" required>
+                                <option value="" disabled selected>-- Select Role --</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Pharmacist">Pharmacist</option>
+                                <option value="Lab Technician">Lab Technician</option>
+                                <option value="Receptionist">Receptionist</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">staff Name:</label>
+                            <input type="text" id="userName" placeholder="Enter User Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userId">User ID (Login):</label>
+                            <input type="text" id="userId" placeholder="Dxxx, PHARMxxx, LABxxx, RECEPxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tempPassword">Temporary Password:</label>
+                            <input type="password" id="tempPassword" value="password123" required>
+                        </div>
+                        <div id="roleSpecificFields"></div>
+                        <div class="form-group">
+                            <label for="availabilityStatus">Availability Status:</label>
+                            <select id="availabilityStatus">
+                                <option value="Available">Available</option>
+                                <option value="On Duty">On Duty</option>
+                                <option value="On Leave">On Leave</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="action-btn primary" id="add-to-roster-btn">ADD USER TO ROSTER</button>
+                            <button type="button" class="action-btn tertiary" id="clear-form-btn">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="hospital-roster-section card">
+                    <h2>Hospital Staff Roster</h2>
+                    <div class="search-bar-container">
+                        <input type="text" id="rosterSearchInput" placeholder="Search staff by Name, ID, or Role..." class="search-input">
+                    </div>
+                    <table class="roster-table doctor-roster-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Role (Detail)</th>
+                                <th>Location/Room</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content" id="patient-billing-report-content" style="display: none;">
+            <div class="billing-report-container card">
+                <h2>Patient Billing Report</h2>
+                <table class="roster-table billing-table">
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Service/Item</th>
+                            <th>Provider</th>
+                            <th>Amount (Rs)</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billing-report-body"></tbody>
+                </table>
+                <div id="daily-total" class="daily-total-display"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Admin/admin.js"></script>
+</body>
+</html>

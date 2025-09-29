@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reuse provided color theme */
+:root {
+    --primary-blue: #1e90ff;
+    --parrot-green: #32cd32;
+    --dark-green: #006400;
+    --light-bg: #f4fff4;
+    --card-bg: #ffffff;
+    --text-dark: #033d2c;
+    --text-light: #fdfdfd;
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--parrot-green));
+    --gradient-secondary: linear-gradient(135deg, var(--parrot-green), var(--dark-green));
+    --shadow-soft: 0 8px 32px rgba(0, 100, 0, 0.08);
+    --shadow-medium: 0 12px 40px rgba(0, 100, 0, 0.12);
+    --shadow-strong: 0 16px 48px rgba(0, 100, 0, 0.15);
+    --edit-btn-color: #ffa500;
+    --delete-btn-color: #ff4444;
+    --glow-blue: 0 0 10px rgba(30, 144, 255, 0.5);
+    --glow-green: 0 0 10px rgba(50, 205, 50, 0.5);
+    --glow-red: 0 0 10px rgba(255, 68, 68, 0.5);
+}
+
+body {
+    background: var(--gradient-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: var(--shadow-strong);
+    overflow: hidden;
+}
+
+.header-banner {
+    background: var(--gradient-secondary);
+    padding: 20px;
+    text-align: center;
+    color: var(--text-light);
+    position: relative;
+}
+
+.hospital-logo {
+    height: 80px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.hospital-logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px var(--glow-green));
+}
+
+.header-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.header-banner h1:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px var(--glow-green);
+}
+
+.header-banner p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.header-banner p:hover {
+    opacity: 1;
+}
+
+.staff-selection {
+    padding: 30px;
+}
+
+.main-content-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--parrot-green);
+    padding-bottom: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.section-title:hover {
+    color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.admin-container, .staff-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.staff-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.staff-icon {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    color: var(--text-light);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.staff-icon:hover {
+    transform: scale(1.1);
+}
+
+.doctor .staff-icon {
+    background-color: var(--primary-blue);
+}
+
+.receptionist .staff-icon {
+    background-color: var(--parrot-green);
+}
+
+.pharmacist .staff-icon {
+    background-color: var(--edit-btn-color);
+}
+
+.lab .staff-icon {
+    background-color: var(--delete-btn-color);
+}
+
+.admin .staff-icon {
+    background-color: var(--dark-green);
+}
+
+.staff-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.staff-info h3 {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.staff-info h3:hover {
+    color: var(--primary-blue);
+}
+
+.staff-info p {
+    color: #7f8c8d;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    transition: color 0.3s ease;
+}
+
+.staff-info p:hover {
+    color: var(--text-dark);
+}
+
+.select-btn {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.select-btn:hover {
+    background: var(--gradient-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-green);
+}
+
+.admin .select-btn {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--light-bg);
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .main-content-container {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .header-banner h1 {
+        font-size: 2rem;
+    }
+
+    .staff-selection {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .staff-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-selection {
+        padding: 10px;
+    }
+
+    .hospital-logo {
+        height: 60px;
+    }
+
+    .admin .select-btn {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+}
