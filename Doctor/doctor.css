@@ -1,0 +1,694 @@
+/* ===== CUSTOM COLOR PATTERN ===== */
+:root {
+    --primary-blue: #1e90ff;
+    --parrot-green: #32cd32;
+    --dark-green: #006400;
+    --light-bg: #f4fff4;
+    --card-bg: #ffffff;
+    --text-dark: #033d2c;
+    --text-light: #fdfdfd;
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--parrot-green));
+    --gradient-secondary: linear-gradient(135deg, var(--parrot-green), var(--dark-green));
+    --shadow-soft: 0 8px 32px rgba(0, 100, 0, 0.08);
+    --shadow-medium: 0 12px 40px rgba(0, 100, 0, 0.12);
+    --shadow-strong: 0 16px 48px rgba(0, 100, 0, 0.15);
+    --edit-btn-color: #ffa500;
+    --delete-btn-color: #ff4444;
+    --glow-blue: 0 0 10px rgba(30, 144, 255, 0.5);
+    --glow-green: 0 0 10px rgba(50, 205, 50, 0.5);
+    --glow-red: 0 0 10px rgba(255, 68, 68, 0.5);
+}
+
+/* ===== BASE STYLES WITH ENHANCED ANIMATIONS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== HEADER STYLES - GRADIENT SECONDARY WITH HOVER EFFECTS ===== */
+.main-header {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.hospital-logo {
+    height: 55px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    animation: logoPulse 3s ease-in-out infinite;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.hospital-logo:hover {
+    animation: logoSpin 0.6s ease, logoPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(50, 205, 50, 0.6)) brightness(1.1);
+    transform: scale(1.1) rotate(360deg);
+}
+
+@keyframes logoSpin {
+    from { transform: rotate(0deg) scale(1.1); }
+    to { transform: rotate(360deg) scale(1.1); }
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.main-header h1:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(50, 205, 50, 0.6);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1rem;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+#doctor-info, #current-time {
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#doctor-info:hover, #current-time:hover {
+    color: var(--primary-blue);
+    text-shadow: var(--glow-blue);
+    transform: scale(1.05);
+    background: rgba(30, 144, 255, 0.1);
+}
+
+/* ===== MAIN CONTENT CONTAINER ===== */
+.main-content-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CARD STYLES WITH ENHANCED HOVER ===== */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--parrot-green);
+    animation: slideIn 0.8s ease-out both;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.card:hover::before {
+    opacity: 0.05;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+    border-left: 6px solid var(--primary-blue);
+}
+
+.patient-queue-card {
+    animation-delay: 0.2s;
+}
+
+.consultation-card {
+    animation-delay: 0.4s;
+}
+
+.lab-reports-card {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--parrot-green);
+    position: relative;
+}
+
+.card-header h2 {
+    color: var(--dark-green);
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.card-header h2:hover {
+    color: var(--primary-blue);
+    transform: translateX(5px);
+}
+
+/* ===== BUTTON STYLES - ENHANCED ANIMATIONS ===== */
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.action-btn:not(:disabled):hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.action-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.action-btn.primary {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.primary:not(:disabled):hover {
+    background: var(--gradient-secondary);
+    box-shadow: var(--glow-green);
+}
+
+.action-btn.secondary {
+    background: var(--parrot-green);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.secondary:not(:disabled):hover {
+    background: var(--primary-blue);
+    color: var(--text-light);
+    box-shadow: var(--glow-blue);
+}
+
+.action-btn.tertiary {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.action-btn.tertiary:not(:disabled):hover {
+    background: var(--primary-blue);
+    color: var(--text-light);
+    box-shadow: var(--glow-blue);
+}
+
+.action-btn.logout {
+    background: var(--delete-btn-color);
+    color: var(--text-light);
+    border: 2px solid transparent;
+}
+
+.action-btn.logout:not(:disabled):hover {
+    background: darken(var(--delete-btn-color), 10%);
+    box-shadow: var(--glow-red);
+    transform: scale(1.05);
+}
+
+.action-btn.confirm {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.confirm:not(:disabled):hover {
+    background: var(--gradient-secondary);
+    box-shadow: var(--glow-green);
+    transform: scale(1.05);
+}
+
+.action-btn.delete {
+    background: var(--delete-btn-color);
+    color: var(--text-light);
+    box-shadow: var(--shadow-soft);
+}
+
+.action-btn.delete:not(:disabled):hover {
+    background: darken(var(--delete-btn-color), 10%);
+    box-shadow: var(--glow-red);
+    transform: scale(1.05);
+}
+
+.action-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ===== PATIENT QUEUE CARD ===== */
+.queue-list {
+    min-height: 300px;
+    padding: 1rem;
+    background: rgba(50, 205, 50, 0.05);
+    border-radius: 8px;
+    border: 1px dashed var(--parrot-green);
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.queue-list:hover {
+    border: 1px solid var(--parrot-green);
+    background: rgba(50, 205, 50, 0.08);
+    box-shadow: var(--glow-green);
+}
+
+.queue-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--card-bg);
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.queue-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.queue-item:hover::before {
+    opacity: 0.1;
+}
+
+.queue-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--parrot-green);
+}
+
+.queue-item.selected {
+    background: rgba(30, 144, 255, 0.1);
+    border-left: 4px solid var(--dark-green);
+    animation: pulse 2s infinite;
+}
+
+.queue-actions {
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== CONSULTATION CARD ===== */
+.consultation-details {
+    background: rgba(50, 205, 50, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--parrot-green);
+    animation: fadeIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+.consultation-details:hover {
+    box-shadow: var(--glow-green);
+}
+
+.consultation-details p {
+    margin: 0;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.consultation-details p:hover {
+    color: var(--primary-blue);
+}
+
+#consultationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-section {
+    background: rgba(50, 205, 50, 0.03);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.form-section:hover {
+    border: 1px solid var(--parrot-green);
+    background: rgba(50, 205, 50, 0.05);
+    box-shadow: var(--glow-green);
+}
+
+.form-section h3 {
+    color: var(--dark-green);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--parrot-green);
+    padding-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.form-section h3:hover {
+    color: var(--primary-blue);
+}
+
+/* ===== FORM ELEMENTS WITH ENHANCED HOVER ===== */
+textarea, input, select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    position: relative;
+}
+
+textarea:focus, input:focus, select:focus {
+    outline: none;
+    border-color: var(--parrot-green);
+    box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.1);
+}
+
+textarea:hover, input:hover, select:hover {
+    border-color: var(--primary-blue);
+    box-shadow: var(--glow-blue);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-group .action-btn {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* ===== LAB REPORTS CARD ===== */
+.search-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-section input {
+    flex: 1;
+}
+
+.reports-list {
+    min-height: 300px;
+    padding: 1rem;
+    background: rgba(50, 205, 50, 0.05);
+    border-radius: 8px;
+    border: 1px dashed var(--parrot-green);
+    transition: all 0.3s ease;
+}
+
+.reports-list:hover {
+    border: 1px solid var(--parrot-green);
+    background: rgba(50, 205, 50, 0.08);
+    box-shadow: var(--glow-green);
+}
+
+.report-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--card-bg);
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.report-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.report-item:hover::before {
+    opacity: 0.1;
+}
+
+.report-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--parrot-green);
+}
+
+.report-item.new {
+    border-left: 4px solid var(--edit-btn-color);
+    animation: pulse 2s infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-waiting {
+    background-color: #ffa500;
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+}
+
+.status-consulting {
+    background-color: var(--primary-blue);
+    animation: pulse 1.5s infinite;
+    box-shadow: var(--glow-blue);
+}
+
+.status-completed {
+    background-color: var(--parrot-green);
+    box-shadow: var(--glow-green);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .main-content-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+    
+    .consultation-card {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .consultation-card {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    
+    .main-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .button-group .action-btn {
+        min-width: 100%;
+    }
+    
+    .search-section {
+        flex-direction: column;
+    }
+    
+    /* Reduce animations on mobile for performance */
+    .card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .queue-item:hover, .report-item:hover {
+        transform: translateX(2px);
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .action-btn, .search-section, .user-info button {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}

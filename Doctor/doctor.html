@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Hospital Doctor's Desk</title>
+    <link rel="stylesheet" href="../Assets/styles.css">
+    <link rel="stylesheet" href="doctor.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="../Assets/faith_hospital_logo.png" alt="Faith Hospital Logo" class="hospital-logo">
+            <h1>Faith Hospital Doctor's Desk</h1>
+        </div>
+        <div id="user-info" class="user-info">
+            <span id="doctor-info"></span>
+            <span id="current-time"></span>
+            <button id="logout-btn" class="action-btn tertiary">Logout</button>
+        </div>
+    </header>
+
+    <div class="main-content-container">
+
+        <div class="card patient-queue-card">
+            <div class="card-header">
+                <h2>Patient Consultation Queue</h2>
+            </div>
+            <div id="patientQueueList" class="queue-list">
+                <p>No patients in queue.</p>
+            </div>
+            <div class="queue-actions">
+                <button id="nextPatientBtn" class="action-btn primary" disabled>Select Next Patient</button>
+            </div>
+        </div>
+
+        <div class="card consultation-card">
+            <div id="consultationHeader" class="card-header">
+                <h2>Consultation: Select Patient</h2>
+            </div>
+            
+            <div class="consultation-details">
+                <p><strong>Token:</strong> <span id="pTokenDisplay">N/A</span> | 
+                    <strong>Name:</strong> <span id="pNameDisplay">N/A</span> | 
+                    <strong>Age:</strong> <span id="pAgeDisplay">N/A</span> | 
+                    <strong>Blood:</strong> <span id="pBloodDisplay">N/A</span> |
+                    <strong>Contact:</strong> <span id="pContactDisplay">N/A</span></p>
+            </div>
+
+            <form id="consultationForm">
+                <div class="form-section">
+                    <h3>Symptoms & Diagnosis</h3>
+                    <textarea id="symptomsObserved" placeholder="Patient complaints and details..." rows="4"></textarea>
+                    
+                    <div class="form-row">
+                        <input type="text" id="pWeight" placeholder="Weight (e.g., 70 kg)">
+                        <input type="text" id="pHeight" placeholder="Height (e.g., 175 cm)">
+                    </div>
+
+                    <input type="text" id="finalDiagnosis" placeholder="Final medical diagnosis (e.g., Viral Fever)" required>
+                    <textarea id="notesInternal" placeholder="Private notes for Follow-up or test..."></textarea>
+                </div>
+
+                <div class="form-section">
+                    <h3>Medicine Prescription</h3>
+                    <input type="text" id="medName" placeholder="Medicine Name: Paracetamol 500mg" required>
+                    <div class="form-row">
+                        <input type="number" id="dose" placeholder="Dose (Per Day): 1" min="1" required>
+                        <input type="number" id="duration" placeholder="Duration (Days): 5" min="1" required>
+                    </div>
+                    <input type="text" id="dosageText" placeholder="Frequency">
+                </div>
+                
+                <div class="form-section">
+                    <h3>Lab Tests Required</h3>
+                    <select id="labTests" required>
+                        <option value="none">No Lab Tests Required</option>
+                        <option value="Blood Test">Blood Test</option>
+                        <option value="Urine Analysis">Urine Analysis</option>
+                        <option value="ECG">ECG</option>
+                        <option value="X-Ray">X-Ray</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" id="sendToPharmacy" class="action-btn secondary">SEND TO PHARMACY</button>
+                    <button type="button" id="sendToLab" class="action-btn secondary">SEND TO LAB</button>
+                    <button type="button" id="completeConsultation" class="action-btn primary">COMPLETE CONSULTATION</button>
+                    <button type="reset" id="clearForm" class="action-btn tertiary">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card lab-reports-card">
+            <div class="card-header">
+                <h2>Lab Reports from Technician</h2>
+            </div>
+            <div class="search-section">
+                <input type="text" id="search-report-id" placeholder="Search by Patient ID...">
+                <button id="search-report-btn" class="action-btn">Search</button>
+            </div>
+            <div id="lab-reports-list" class="reports-list">
+                <p>No new lab reports.</p>
+            </div>
+            <div class="card manage-consultation-card">
+                <div class="card-header">
+                    <h2>Manage Past Consultations</h2>
+                </div>
+                <div class="search-section">
+                    <input type="text" id="search-consultation-name" placeholder="Search by Patient Name...">
+                    <button id="search-consultation-btn" class="action-btn">Search</button>
+                </div>
+                <div id="consultation-results-list" class="reports-list">
+                    <p>Search for a patient to manage their consultation records.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="doctor.js"></script>
+</body>
+</html>
